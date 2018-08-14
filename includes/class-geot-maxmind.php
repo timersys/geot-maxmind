@@ -1,5 +1,5 @@
 <?php
-class GeoMaximind {
+class GeotMaxmind {
 
 	protected $cron;
 	private static $url_maxmind_db;
@@ -12,9 +12,9 @@ class GeoMaximind {
 	}
 
 	private function load_dependencies() {
-		require_once GEOT_MAXMIND_DIR . 'includes/class-geomaxmind-cron.php';
+		require_once GEOT_MAXMIND_DIR . 'includes/class-geot-maxmind-cron.php';
 
-		$this->cron = new GeoMaximind_Cron();
+		$this->cron = new GeotMaxmindCron();
 	}
 
 
@@ -98,4 +98,3 @@ class GeoMaximind {
 		}
 	}
 }
-?>

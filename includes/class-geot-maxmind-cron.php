@@ -8,7 +8,7 @@
  * @package    GeoTarget
  * @subpackage GeoTarget/includes
  */
-class GeoMaximind_Cron {
+class GeotMaxmindCron {
 
 	/**
 	 * Construct

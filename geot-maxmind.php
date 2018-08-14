@@ -5,11 +5,11 @@
  * @package           GeoTarget
  *
  * @wordpress-plugin
- * Plugin Name:       Geo Maxmind
+ * Plugin Name:       GeoT Maxmind
  * Plugin URI:        https://geotargetingwp.com/geotargeting-pro
- * Description:       Download the Maxmind Database and it update it every 2 months
+ * Description:       Download the Maxmind Database and update it every 2 months. Built for Geotargeting Pro plugin
  * Version:           1.0.1
- * Author:            Timersys
+ * Author:            timersys
  * Author URI:        https://geotargetingwp.com/geotargeting-pro
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -22,29 +22,28 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'GEOT_PLUGIN_FILE' , __FILE__);
+define( 'GEOT_MAXIND_PLUGIN_FILE' , __FILE__);
 define( 'GEOT_MAXMIND_DIR' , plugin_dir_path(__FILE__) );
 define( 'GEOT_MAXMIND_URL' , plugin_dir_url(__FILE__) );
 
 /*
 	Geomaxmind Class
 */
-require_once GEOT_MAXMIND_DIR . 'includes/class-geomaxmind.php';
-$geomax = new GeoMaximind();
+require_once GEOT_MAXMIND_DIR . 'includes/class-geot-maxmind.php';
+$geomax = new GeotMaxmind();
 
 /**
  * The code that runs during plugin activation.
  */
-require_once GEOT_MAXMIND_DIR . 'includes/class-geomaxmind-activator.php';
+require_once GEOT_MAXMIND_DIR . 'includes/class-geot-maxmind-activator.php';
 
 /**
  * The code that runs during plugin deactivation.
  */
-require_once GEOT_MAXMIND_DIR . 'includes/class-geomaxmind-deactivator.php';
+require_once GEOT_MAXMIND_DIR . 'includes/class-geot-maxmind-deactivator.php';
 
 /** This action is documented in includes/class-geotarget-activator.php */
-register_activation_hook( __FILE__, array( 'GeoMaximind_Activator', 'activate' ) );
+register_activation_hook( __FILE__, array( 'GeotMaxmindActivator', 'activate' ) );
 
 /** This action is documented in includes/class-geotarget-deactivator.php */
-register_deactivation_hook( __FILE__, array( 'GeoMaximind_Deactivator', 'deactivate' ) );
-?>
+register_deactivation_hook( __FILE__, array( 'GeotMaxmindDeactivator', 'deactivate' ) );
