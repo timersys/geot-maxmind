@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Register Cron.
  *
@@ -11,20 +12,23 @@
 class GeotMaxmindCron {
 
 	/**
-	 * Construct
-	 *
-	 * Long Description.
-	 *
-	 * @since    1.0.0
+	 * GeotMaxmindCron constructor.
 	 */
 	public function __construct() {
-		add_filter( 'cron_schedules', array(self::class,'register_schedules'), 10, 1);
+		add_filter( 'cron_schedules', array( self::class, 'register_schedules' ), 10, 1 );
 	}
 
-	static function register_schedules($schedules) {
-		$schedules['every_2_months'] = array(
-			'interval' => 2 * MONTH_IN_SECONDS,
-			'display' => __( 'Every 2 Months', 'geot' )
+	/**
+	 * Register our time schedule
+	 *
+	 * @param $schedules
+	 *
+	 * @return mixed
+	 */
+	static function register_schedules( $schedules ) {
+		$schedules['geot_every_month'] = array(
+			'interval' => MONTH_IN_SECONDS,
+			'display'  => __( 'Every Month', 'geot' )
 		);
 
 		return $schedules;

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Fired during plugin deactivation.
  *
@@ -11,17 +12,14 @@
 class GeotMaxmindDeactivator {
 
 	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
-	 *
+	 * Remove cron
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-	
-	   	wp_clear_scheduled_hook( 'geo_maxmind_cron' );
 
-		do_action('geomax/deactivated');
+		wp_clear_scheduled_hook( 'geot_maxmind_cron' );
+
+		do_action( 'geotmax/deactivated' );
 	}
 
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Fired during plugin activation.
  *
@@ -11,15 +12,13 @@
 class GeotMaxmindActivator {
 
 	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
+	 * On plugin activation check php version and download database
 	 *
 	 * @since    1.0.0
 	 */
 	public static function activate() {
 
-		if( version_compare(PHP_VERSION, '5.6' ) < 0 ) {
+		if ( version_compare( PHP_VERSION, '5.6' ) < 0 ) {
 
 			deactivate_plugins( GEOT_MAXIND_PLUGIN_FILE );
 			wp_die(
@@ -31,10 +30,9 @@ class GeotMaxmindActivator {
 		self::maybe_register_cron();
 		GeotMaxmind::maybe_download_maxmind();
 
-		do_action('geomax/activated');
+		do_action( 'geotmax/activated' );
 	}
 
-	
 
 	/**
 	 * Register Cron
@@ -42,8 +40,8 @@ class GeotMaxmindActivator {
 	 */
 	protected static function maybe_register_cron() {
 
-		if( ! wp_next_scheduled( 'geo_maxmind_cron' ) ) {
-			wp_schedule_event( current_time( 'timestamp' ), 'every_2_months', 'geo_maxmind_cron' );
+		if ( ! wp_next_scheduled( 'geot_maxmind_cron' ) ) {
+			wp_schedule_event( current_time( 'timestamp' ), 'geot_every_month', 'geot_maxmind_cron' );
 		}
 	}
 
