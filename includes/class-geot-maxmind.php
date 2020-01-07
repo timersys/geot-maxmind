@@ -32,8 +32,9 @@ class GeotMaxmind {
 	 */
 	protected static function set_paths() {
 		$path_upload = wp_upload_dir();
+		$url = 'https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=O9DRmIuDxZllcBX2&suffix=tar.gz';
 
-		self::$url_maxmind_db = apply_filters( 'geotmax/url_external', 'http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz' );
+		self::$url_maxmind_db = apply_filters( 'geotmax/url_external', $url );
 
 		self::$path_maxmind_geo = apply_filters( 'geotmax/path_local', $path_upload['basedir'] . '/geot_plugin/GeoLite2-City.mmdb' );
 	}
