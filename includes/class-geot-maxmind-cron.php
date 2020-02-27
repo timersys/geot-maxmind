@@ -15,7 +15,7 @@ class GeotMaxmindCron {
 	 * GeotMaxmindCron constructor.
 	 */
 	public function __construct() {
-		add_filter( 'cron_schedules', array( self::class, 'register_schedules' ), 10, 1 );
+		add_filter( 'cron_schedules', [ self::class, 'register_schedules' ], 10, 1 );
 	}
 
 	/**
@@ -26,10 +26,10 @@ class GeotMaxmindCron {
 	 * @return mixed
 	 */
 	static function register_schedules( $schedules ) {
-		$schedules['geot_every_month'] = array(
+		$schedules['geot_every_month'] = [
 			'interval' => MONTH_IN_SECONDS,
 			'display'  => __( 'Every Month', 'geot' )
-		);
+		];
 
 		return $schedules;
 	}

@@ -20,7 +20,7 @@ class GeotMaxmindActivator {
 
 		if ( version_compare( PHP_VERSION, '5.6' ) < 0 ) {
 
-			deactivate_plugins( GEOT_MAXIND_PLUGIN_FILE );
+			deactivate_plugins( GEOT_MAXIND_FILE );
 			wp_die(
 				'<p>' . __( 'Hey, we\'ve noticed that you\'re running an outdated version of PHP. PHP is the programming language that WordPress and this plugin are built on. The version that is currently used for your site is no longer supported. Newer versions of PHP are both faster and more secure. In fact, your version of PHP no longer receives security updates.' ) . '</p>' .
 				'<p>' . __( 'Geo Maxmind requires at least PHP 5.6 and you are running PHP ' ) . PHP_VERSION . '</p>'

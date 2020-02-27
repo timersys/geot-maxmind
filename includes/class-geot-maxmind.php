@@ -13,14 +13,17 @@ class GeotMaxmind {
 	 * GeotMaxmind constructor.
 	 */
 	public function __construct() {
-		add_action( 'geot_maxmind_cron', array( self::class, 'maybe_download_maxmind' ) );
+		add_action( 'geot_maxmind_cron', [ self::class, 'maybe_download_maxmind' ] );
 		$this->load_dependencies();
+
+		add_action( 'plugins_loaded', [ $this, 'updater' ] );
 	}
 
 	/**
 	 * Load needed files
 	 */
 	private function load_dependencies() {
+		require_once GEOT_MAXMIND_DIR . 'includes/class-geot-maxmind-updater.php';
 		require_once GEOT_MAXMIND_DIR . 'includes/class-geot-maxmind-cron.php';
 
 		$this->cron = new GeotMaxmindCron();
@@ -101,5 +104,34 @@ class GeotMaxmind {
 
 			@unlink( $tmp_database_path ); // phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged, WordPress.VIP.FileSystemWritesDisallow.file_ops_unlink
 		}
+	}
+
+	/**
+	 * Load plugin updater.
+	 *
+	 * @since 2.0.0
+	 */
+	public function updater() {
+
+		if ( ! is_admin() ) {
+			return;
+		}
+
+
+		// Go ahead and initialize the updater.
+		new GeotMaxmind_Updater(
+			GEOT_MAXIND_UPDATER_API,
+			GEOT_MAXMIND_BASE,
+			[
+				'version'	=> GEOT_MAXIND_VERSION,
+				'license'	=> '',
+				'item_id'	=> GEOT_MAXIND_EDD_ID,
+				'author'	=> 'Damian Logghe',
+				'url'		=> home_url(),
+			]
+		);
+
+		// Fire a hook for Addons to register their updater since we know the key is present.
+		do_action( 'maxmind_updater' );
 	}
 }

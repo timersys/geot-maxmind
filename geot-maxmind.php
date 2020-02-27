@@ -22,13 +22,18 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'GEOT_MAXIND_PLUGIN_FILE', __FILE__ );
+define( 'GEOT_MAXIND_EDD_ID', '59565' );
+define( 'GEOT_MAXIND_VERSION', '1.0.1.1' );
+define( 'GEOT_MAXIND_UPDATER_API', 'https://timersys.com/' );
+
+define( 'GEOT_MAXIND_FILE', __FILE__ );
 define( 'GEOT_MAXMIND_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GEOT_MAXMIND_URL', plugin_dir_url( __FILE__ ) );
+define( 'GEOT_MAXMIND_BASE', plugin_basename( __FILE__ ) );
 
-/*
-	Geotmaxmind Class
-*/
+/**
+ *	Geotmaxmind Class
+ */
 require_once GEOT_MAXMIND_DIR . 'includes/class-geot-maxmind.php';
 $geotmax = new GeotMaxmind();
 
@@ -43,7 +48,7 @@ require_once GEOT_MAXMIND_DIR . 'includes/class-geot-maxmind-activator.php';
 require_once GEOT_MAXMIND_DIR . 'includes/class-geot-maxmind-deactivator.php';
 
 /** This action is documented in includes/class-geotarget-activator.php */
-register_activation_hook( __FILE__, array( 'GeotMaxmindActivator', 'activate' ) );
+register_activation_hook( __FILE__, [ 'GeotMaxmindActivator', 'activate' ] );
 
 /** This action is documented in includes/class-geotarget-deactivator.php */
-register_deactivation_hook( __FILE__, array( 'GeotMaxmindDeactivator', 'deactivate' ) );
+register_deactivation_hook( __FILE__, [ 'GeotMaxmindDeactivator', 'deactivate' ] );
