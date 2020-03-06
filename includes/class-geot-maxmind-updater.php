@@ -37,13 +37,15 @@ class GeotMaxmind_Updater {
 	 */
 	public function handle_updates() {
 
-		if( ! class_exists( 'GeotUpdates' ) )
+		if( ! class_exists( 'GeotUpdates' ) || ! function_exists('geot_settings') )
 			return false;
+
+		$opts = geot_settings();
 
 		// Setup the updater
 		$GeoUpdate = new GeotUpdates( GEOT_MAXIND_FILE, [
 				'version' => GEOT_MAXIND_VERSION,
-				'license' => '',
+				'license' => isset( $opts['license'] ) ? $opts['license'] : '',
 			]
 		);
 
