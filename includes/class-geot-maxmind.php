@@ -14,9 +14,9 @@ class GeotMaxmind {
 	 */
 	public function __construct() {
 		add_action( 'geot_maxmind_cron', [ self::class, 'maybe_download_maxmind' ] );
+		
 		$this->load_dependencies();
-
-		add_action( 'plugins_loaded', [ $this, 'updater' ] );
+		$this->set_objects_admin();
 	}
 
 	/**
@@ -106,32 +106,16 @@ class GeotMaxmind {
 		}
 	}
 
+
 	/**
 	 * Load plugin updater.
 	 *
 	 * @since 2.0.0
 	 */
-	public function updater() {
-
-		if ( ! is_admin() ) {
+	protected function set_objects_admin() {
+		if ( ! is_admin() )
 			return;
-		}
 
-
-		// Go ahead and initialize the updater.
-		new GeotMaxmind_Updater(
-			GEOT_MAXIND_UPDATER_API,
-			GEOT_MAXMIND_BASE,
-			[
-				'version'	=> GEOT_MAXIND_VERSION,
-				'license'	=> '',
-				'item_id'	=> GEOT_MAXIND_EDD_ID,
-				'author'	=> 'Damian Logghe',
-				'url'		=> home_url(),
-			]
-		);
-
-		// Fire a hook for Addons to register their updater since we know the key is present.
-		do_action( 'maxmind_updater' );
+		$this->updater   = new GeotMaxmind_Updater();
 	}
 }
