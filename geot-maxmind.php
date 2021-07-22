@@ -8,7 +8,7 @@
  * Plugin Name:       Geo Maxmind
  * Plugin URI:        https://geotargetingwp.com/geotargeting-pro
  * Description:       Download the Maxmind Database and update it every month. Built for GeotargetingWP plugins
- * Version:           1.0.2
+ * Version:           1.0.3
  * Author:            Timersys
  * Author URI:        https://geotargetingwp.com/geotargeting-pro
  * License:           GPL-2.0+
@@ -22,7 +22,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'GEOT_MAXIND_VERSION', '1.0.2' );
+define( 'GEOT_MAXIND_VERSION', '1.0.3' );
 
 define( 'GEOT_MAXIND_FILE', __FILE__ );
 define( 'GEOT_MAXMIND_DIR', plugin_dir_path( __FILE__ ) );

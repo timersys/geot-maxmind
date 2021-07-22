@@ -26,9 +26,9 @@ class GeotMaxmindCron {
 	 * @return mixed
 	 */
 	static function register_schedules( $schedules ) {
-		$schedules['geot_every_month'] = [
-			'interval' => MONTH_IN_SECONDS,
-			'display'  => __( 'Every Month', 'geot' )
+		$schedules['geot_every_week'] = [
+			'interval' => WEEK_IN_SECONDS,
+			'display'  => __( 'Every Week', 'geot' )
 		];
 
 		return $schedules;

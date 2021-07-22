@@ -56,6 +56,15 @@ class GeotMaxmind {
 	 */
 	public static function maybe_download_maxmind() {
 		self::set_paths();
+		// check that at least one week passed. Wordpress crons get stuck
+		$downloaded  = get_option('geot_maxmind_downloaded');
+		if( $downloaded && file_exists( self::$path_maxmind_geo ) ) {
+			$time         = strtotime( $downloaded );
+			$one_week_ago = strtotime( '-1 week' );
+			if ( $time > $one_week_ago ) {
+				return;
+			}
+		}
 
 		if ( ! file_exists( self::$path_maxmind_geo ) || defined( 'DOING_CRON' ) ) {
 			self::create_subfolder();
@@ -98,6 +107,7 @@ class GeotMaxmind {
 
 				@chmod( $dest_path, 0644 ); // phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged, WordPress.VIP.FileSystemWritesDisallow.chmod_chmod
 
+				update_option('geot_maxmind_downloaded', date('Y-m-d'));
 			} catch ( Exception $e ) {
 				print_r( $e->getMessage() );
 			}

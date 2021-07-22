@@ -41,7 +41,7 @@ class GeotMaxmindActivator {
 	protected static function maybe_register_cron() {
 
 		if ( ! wp_next_scheduled( 'geot_maxmind_cron' ) ) {
-			wp_schedule_event( current_time( 'timestamp' ), 'geot_every_month', 'geot_maxmind_cron' );
+			wp_schedule_event( current_time( 'timestamp' ), 'geot_every_week', 'geot_maxmind_cron' );
 		}
 	}
 
